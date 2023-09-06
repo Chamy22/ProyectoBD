@@ -79,4 +79,5 @@ app.get('/:idProduct', (req,res) =>{
     res.send({product})
 }),
 
+
 app.listen(8080, ()=> console.log('Servidor arriba en el puerto 8080')) 

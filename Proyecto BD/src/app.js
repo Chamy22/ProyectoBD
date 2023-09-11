@@ -66,9 +66,9 @@ const products = [
     stock: 12},4
 ]
 
- app.get('/Product',(req,res) =>{
+app.get('/Product',(req,res) =>{
     res.send({products})
-}),
+}), 
 
 app.get('/:idProduct', (req,res) =>{
     let idProduct = req.params.idProduct;
@@ -77,7 +77,29 @@ app.get('/:idProduct', (req,res) =>{
     if(!product) return res.send({error:"Product no encontrado"})
 
     res.send({product})
-}),
+}), 
+
+app.get('/', (req, res) => {
+
+    const limit = parseInt(req.query.limit);
+
+    if (!isNaN(limit) && limit > 0) {
+
+        res.json(products.slice(0, limit));
+
+    } else {
+
+        res.json(products);
+
+    }
+
+});
+
+app.listen(8080, ()=> console.log('Servidor arriba en el puerto 8080'))
 
 
-app.listen(8080, ()=> console.log('Servidor arriba en el puerto 8080')) 
+
+
+
+
+
